@@ -1,0 +1,227 @@
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [0,0]!
+	X--
+	---
+	---
+Jogador 2
+Digite uma posicao (x e y):
+Jogada [1,1]!
+	X--
+	-O-
+	---
+Jogador 1
+Digite uma posicao (x e y):
+Posicao invalida (OCUPADA - [0,0] )!
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [1,0]!
+	XX-
+	-O-
+	---
+Jogador 2
+Digite uma posicao (x e y):
+Jogada [0,2]!
+	XX-
+	-O-
+	O--
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [1,2]!
+	XX-
+	-O-
+	OX-
+Jogador 2
+Digite uma posicao (x e y):
+Posicao invalida (FORA DO TABULEIRO - [0,3] )!
+Jogador 2
+Digite uma posicao (x e y):
+Jogada [2,2]!
+	XX-
+	-O-
+	OXO
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [2,1]!
+	XX-
+	-OX
+	OXO
+Jogador 2
+Digite uma posicao (x e y):
+Jogada [2,0]!
+	XXO
+	-OX
+	OXO
+JOGADOR 2 Venceu!
+Jogar novamente? (s,n)
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [0,0]!
+	X--
+	---
+	---
+Jogador 2
+Digite uma posicao (x e y):
+Jogada [1,1]!
+	X--
+	-O-
+	---
+Jogador 1
+Digite uma posicao (x e y):
+Posicao invalida (FORA DO TABULEIRO - [4,1] )!
+Jogador 1
+Digite uma posicao (x e y):
+Posicao invalida (OCUPADA - [0,0] )!
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [1,0]!
+	XX-
+	-O-
+	---
+Jogador 2
+Digite uma posicao (x e y):
+Jogada [0,2]!
+	XX-
+	-O-
+	O--
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [1,2]!
+	XX-
+	-O-
+	OX-
+Jogador 2
+Digite uma posicao (x e y):
+Jogada [2,2]!
+	XX-
+	-O-
+	OXO
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [2,1]!
+	XX-
+	-OX
+	OXO
+Jogador 2
+Digite uma posicao (x e y):
+Jogada [2,0]!
+	XXO
+	-OX
+	OXO
+JOGADOR 2 Venceu!
+Jogar novamente? (s,n)
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [1,1]!
+	---
+	-X-
+	---
+Jogador 2
+Digite uma posicao (x e y):
+Jogada [0,0]!
+	O--
+	-X-
+	---
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [2,0]!
+	O-X
+	-X-
+	---
+Jogador 2
+Digite uma posicao (x e y):
+Jogada [1,0]!
+	OOX
+	-X-
+	---
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [2,2]!
+	OOX
+	-X-
+	--X
+Jogador 2
+Digite uma posicao (x e y):
+Jogada [0,1]!
+	OOX
+	OX-
+	--X
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [1,2]!
+	OOX
+	OX-
+	-XX
+Jogador 2
+Digite uma posicao (x e y):
+Jogada [2,1]!
+	OOX
+	OXO
+	-XX
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [0,2]!
+	OOX
+	OXO
+	XXX
+JOGADOR 1 Venceu!
+Jogar novamente? (s,n)
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [1,1]!
+	---
+	-X-
+	---
+Jogador 2
+Digite uma posicao (x e y):
+Jogada [0,0]!
+	O--
+	-X-
+	---
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [2,0]!
+	O-X
+	-X-
+	---
+Jogador 2
+Digite uma posicao (x e y):
+Jogada [1,0]!
+	OOX
+	-X-
+	---
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [2,2]!
+	OOX
+	-X-
+	--X
+Jogador 2
+Digite uma posicao (x e y):
+Posicao invalida (FORA DO TABULEIRO - [3,3] )!
+Jogador 2
+Digite uma posicao (x e y):
+Jogada [0,1]!
+	OOX
+	OX-
+	--X
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [1,2]!
+	OOX
+	OX-
+	-XX
+Jogador 2
+Digite uma posicao (x e y):
+Jogada [2,1]!
+	OOX
+	OXO
+	-XX
+Jogador 1
+Digite uma posicao (x e y):
+Jogada [0,2]!
+	OOX
+	OXO
+	XXX
+JOGADOR 1 Venceu!
+Jogar novamente? (s,n)
