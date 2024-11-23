@@ -10,11 +10,12 @@ tJogador CriaJogador(int idJogador)
 
 tTabuleiro JogaJogador(tJogador jogador, tTabuleiro tabuleiro)
 {
+    printf("Jogador %d\n", jogador.id);
     tJogada jogada = LeJogada();
 
     if (!FoiJogadaBemSucedida(jogada))
     {
-        printf("Posicao invalida (FORA DO TABULEIRO)!\n");
+        printf("Formato inválido!\n");
         return JogaJogador(jogador, tabuleiro);
     }
 
@@ -23,7 +24,7 @@ tTabuleiro JogaJogador(tJogador jogador, tTabuleiro tabuleiro)
 
     if (!EhPosicaoValidaTabuleiro(x, y))
     {
-        printf("Posicao invalida (FORA DO TABULEIRO - [%d,%d] )!\n", TAM_TABULEIRO, TAM_TABULEIRO);
+        printf("Posicao invalida (FORA DO TABULEIRO - [%d,%d] )!\n", x, y);
         return JogaJogador(jogador, tabuleiro);
     }
 
@@ -35,7 +36,7 @@ tTabuleiro JogaJogador(tJogador jogador, tTabuleiro tabuleiro)
 
     int peca = jogador.id == ID_JOGADOR_1 ? PECA_1 : PECA_2;
     tabuleiro = MarcaPosicaoTabuleiro(tabuleiro, peca, x, y);
-    printf("JOGADA [%d,%d]!\n", x, y);
+    printf("Jogada [%d,%d]!\n", x, y);
     ImprimeTabuleiro(tabuleiro);
 
     return tabuleiro;
@@ -44,57 +45,62 @@ tTabuleiro JogaJogador(tJogador jogador, tTabuleiro tabuleiro)
 int VenceuJogador(tJogador jogador, tTabuleiro tabuleiro)
 {
     int peca = jogador.id == ID_JOGADOR_1 ? PECA_1 : PECA_2;
-    int venceu = 1;
-
-    for (int i = 0; i < TAM_TABULEIRO; i++)
-    {
-        if (EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, i, i, peca))
-            continue;
-
-        venceu = 0;
-        break;
-    }
-
-    if (venceu)
+    
+    if (
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 0, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 0, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 0, peca)
+    )
+        return 1;
+    
+    if (
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 1, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 1, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 1, peca)
+    )
+        return 1;
+        
+    if (
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 2, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 2, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 2, peca)
+    )
+        return 1;
+    
+    if (
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 0, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 1, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 2, peca)
+    )
+        return 1;
+    
+    if (
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 0, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 1, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 2, peca)
+    )
         return 1;
 
-    venceu = 1;
-    for (int i = 0; i < TAM_TABULEIRO; i++)
-    {
-        if (EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, i, TAM_TABULEIRO - (i + 1), peca))
-            continue;
-
-        venceu = 0;
-        break;
-    }
-
-    if (venceu)
+    if (
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 0, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 1, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 2, peca)
+    )
+        return 1;
+    
+    if (
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 0, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 1, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 2, peca)
+    )
+        return 1;
+    
+    if (
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 2, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 1, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 0, peca)
+    )
         return 1;
 
-    venceu = 1;
-    for (int i = 0; i < TAM_TABULEIRO; i++)
-        for (int j = 0; j < TAM_TABULEIRO; j++)
-        {
-            if (EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, i, j, peca))
-                continue;
-
-            venceu = 0;
-            break;
-        }
-
-    if (venceu)
-        return 1;
-
-    venceu = 1;
-    for (int j = 0; j < TAM_TABULEIRO; j++)
-        for (int i = 0; i < TAM_TABULEIRO; i++)
-        {
-            if (EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, i, j, peca))
-                continue;
-
-            venceu = 0;
-            break;
-        }
-
-    return venceu;
+    return 0;
 }

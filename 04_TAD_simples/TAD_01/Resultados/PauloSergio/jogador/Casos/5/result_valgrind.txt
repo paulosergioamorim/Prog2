@@ -1,33 +1,15 @@
-==48394== Memcheck, a memory error detector
-==48394== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==48394== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==48394== Command: Resultados/PauloSergio/jogador/prog Resultados/PauloSergio/jogador/Casos/5
-==48394== Parent PID: 48393
-==48394== 
-==48394== Stack overflow in thread #1: can't grow stack to 0x1ffe801000
-==48394== 
-==48394== Process terminating with default action of signal 11 (SIGSEGV)
-==48394==  Access not within mapped region at address 0x1FFE801FA0
-==48394== Stack overflow in thread #1: can't grow stack to 0x1ffe801000
-==48394==    at 0x48C334A: __vfscanf_internal (vfscanf-internal.c:618)
-==48394==  If you believe this happened as a result of a stack
-==48394==  overflow in your program's main thread (unlikely but
-==48394==  possible), you can try to increase the size of the
-==48394==  main thread stack using the --main-stacksize= flag.
-==48394==  The main thread stack size used in this run was 8388608.
-==48394== 
-==48394== HEAP SUMMARY:
-==48394==     in use at exit: 8,192 bytes in 2 blocks
-==48394==   total heap usage: 2 allocs, 0 frees, 8,192 bytes allocated
-==48394== 
-==48394== LEAK SUMMARY:
-==48394==    definitely lost: 0 bytes in 0 blocks
-==48394==    indirectly lost: 0 bytes in 0 blocks
-==48394==      possibly lost: 0 bytes in 0 blocks
-==48394==    still reachable: 8,192 bytes in 2 blocks
-==48394==         suppressed: 0 bytes in 0 blocks
-==48394== Reachable blocks (those to which a pointer was found) are not shown.
-==48394== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==48394== 
-==48394== For lists of detected and suppressed errors, rerun with: -s
-==48394== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==171407== Memcheck, a memory error detector
+==171407== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==171407== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==171407== Command: Resultados/PauloSergio/jogador/prog Resultados/PauloSergio/jogador/Casos/5
+==171407== Parent PID: 171406
+==171407== 
+==171407== 
+==171407== HEAP SUMMARY:
+==171407==     in use at exit: 0 bytes in 0 blocks
+==171407==   total heap usage: 2 allocs, 2 frees, 8,192 bytes allocated
+==171407== 
+==171407== All heap blocks were freed -- no leaks are possible
+==171407== 
+==171407== For lists of detected and suppressed errors, rerun with: -s
+==171407== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

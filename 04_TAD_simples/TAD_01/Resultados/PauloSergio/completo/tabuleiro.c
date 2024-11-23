@@ -6,7 +6,7 @@ tTabuleiro CriaTabuleiro()
     tTabuleiro tabuleiro;
     tabuleiro.pecaVazio = '-';
     tabuleiro.peca1 = 'X';
-    tabuleiro.peca2 = 'O';
+    tabuleiro.peca2 = '0';
 
     for (int i = 0; i < TAM_TABULEIRO; i++)
         for (int j = 0; j < TAM_TABULEIRO; j++)
@@ -35,7 +35,7 @@ int EstaMarcadaPosicaoPecaTabuleiro(tTabuleiro tabuleiro, int x, int y, int peca
 {
     if (peca == PECA_1)
         return tabuleiro.posicoes[x][y] == tabuleiro.peca1;
-        
+
     return tabuleiro.posicoes[x][y] == tabuleiro.peca2;
 }
 

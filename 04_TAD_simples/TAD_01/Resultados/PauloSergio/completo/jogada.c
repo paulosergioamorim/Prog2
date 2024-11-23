@@ -5,7 +5,8 @@ tJogada LeJogada()
 {
     tJogada jogada;
     printf("Digite uma posicao (x e y):\n");
-    jogada.sucesso = scanf("%d %d", &jogada.x, &jogada.y) == 2;
+    jogada.sucesso = scanf("%d %d%*c", &jogada.x, &jogada.y) == 2;
+    
     return jogada;
 }
 

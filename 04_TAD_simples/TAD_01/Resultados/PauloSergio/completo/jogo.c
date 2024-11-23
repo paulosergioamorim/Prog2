@@ -18,13 +18,13 @@ void ComecaJogo(tJogo jogo)
         jogo.tabuleiro = JogaJogador(i % 2 == 0 ? jogo.jogador1 : jogo.jogador2, jogo.tabuleiro);
 
     if (VenceuJogador(jogo.jogador1, jogo.tabuleiro))
-        printf("JOGADOR 1 venceu!\n");
+        printf("JOGADOR 1 Venceu!\n");
 
     else if (VenceuJogador(jogo.jogador2, jogo.tabuleiro))
-        printf("JOGADOR 2 venceu!\n");
+        printf("JOGADOR 2 Venceu!\n");
 
     else if (!TemPosicaoLivreTabuleiro(jogo.tabuleiro))
-        printf("EMPATE!\n");
+        printf("Sem vencedor!\n");
 
     if (ContinuaJogo())
         ComecaJogo(jogo);
@@ -38,14 +38,14 @@ int AcabouJogo(tJogo jogo)
 int ContinuaJogo()
 {
     char c = 0;
-    printf("Jogar novamente? (s,n)");
-    scanf("%c[^\n]", &c);
+    printf("Jogar novamente? (s,n)\n");
+
+    while (c != 's' && c != 'n')
+        scanf("%c%*c", &c);
 
     if (c == 's')
         return 1;
-    
+
     else if (c == 'n')
         return 0;
-    
-    return ContinuaJogo();
 }
