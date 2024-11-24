@@ -10,35 +10,37 @@ tJogo CriaJogo()
 
 void ComecaJogo(tJogo jogo)
 {
-    jogo.jogador1 = CriaJogador(1);
-    jogo.jogador2 = CriaJogador(2);
+    jogo.jogador1 = CriaJogador(ID_JOGADOR_1);
+    jogo.jogador2 = CriaJogador(ID_JOGADOR_2);
     jogo.tabuleiro = CriaTabuleiro();
 
-    for (int i = 0; !AcabouJogo(jogo); i++)
-        jogo.tabuleiro = JogaJogador(i % 2 == 0 ? jogo.jogador1 : jogo.jogador2, jogo.tabuleiro);
+    for (int i = ID_JOGADOR_1;
+         !AcabouJogo(jogo);
+         i = i == ID_JOGADOR_1 ? ID_JOGADOR_2 : ID_JOGADOR_1)
+    {
+        jogo.tabuleiro = JogaJogador(i == ID_JOGADOR_1 ? jogo.jogador1 : jogo.jogador2, jogo.tabuleiro);
+        ImprimeTabuleiro(jogo.tabuleiro);
 
-    if (VenceuJogador(jogo.jogador1, jogo.tabuleiro))
-        printf("JOGADOR 1 Venceu!\n");
+        if (VenceuJogador(i == ID_JOGADOR_1 ? jogo.jogador1 : jogo.jogador2, jogo.tabuleiro))
+        {
+            printf("JOGADOR %d Venceu!\n", i);
+            printf("Jogar novamente? (s,n)\n");
+            return;
+        }
+    }
 
-    else if (VenceuJogador(jogo.jogador2, jogo.tabuleiro))
-        printf("JOGADOR 2 Venceu!\n");
-
-    else if (!TemPosicaoLivreTabuleiro(jogo.tabuleiro))
-        printf("Sem vencedor!\n");
-
-    if (ContinuaJogo())
-        ComecaJogo(jogo);
+    printf("Jogar novamente? (s,n)\n");
+    printf("Sem vencedor!\n");
 }
 
 int AcabouJogo(tJogo jogo)
 {
-    return VenceuJogador(jogo.jogador1, jogo.tabuleiro) || VenceuJogador(jogo.jogador2, jogo.tabuleiro) || !TemPosicaoLivreTabuleiro(jogo.tabuleiro);
+    return !TemPosicaoLivreTabuleiro(jogo.tabuleiro);
 }
 
 int ContinuaJogo()
 {
     char c = 0;
-    printf("Jogar novamente? (s,n)\n");
 
     while (c != 's' && c != 'n')
         scanf("%c%*c", &c);

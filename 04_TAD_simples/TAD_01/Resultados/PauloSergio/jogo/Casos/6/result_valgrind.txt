@@ -1,0 +1,6 @@
+==13681== Memcheck, a memory error detector
+==13681== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==13681== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==13681== Command: Resultados/PauloSergio/jogo/prog Resultados/PauloSergio/jogo/Casos/6
+==13681== Parent PID: 13680
+==13681== 

@@ -1,0 +1,6 @@
+==13434== Memcheck, a memory error detector
+==13434== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==13434== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==13434== Command: Resultados/PauloSergio/jogo/prog Resultados/PauloSergio/jogo/Casos/4
+==13434== Parent PID: 13433
+==13434== 

@@ -1,6 +1,6 @@
-==172528== Memcheck, a memory error detector
-==172528== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==172528== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==172528== Command: Resultados/PauloSergio/jogo/prog Resultados/PauloSergio/jogo/Casos/2
-==172528== Parent PID: 172527
-==172528== 
+==13198== Memcheck, a memory error detector
+==13198== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==13198== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==13198== Command: Resultados/PauloSergio/jogo/prog Resultados/PauloSergio/jogo/Casos/2
+==13198== Parent PID: 13197
+==13198== 

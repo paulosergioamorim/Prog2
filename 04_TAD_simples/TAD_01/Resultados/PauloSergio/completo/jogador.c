@@ -37,7 +37,6 @@ tTabuleiro JogaJogador(tJogador jogador, tTabuleiro tabuleiro)
     int peca = jogador.id == ID_JOGADOR_1 ? PECA_1 : PECA_2;
     tabuleiro = MarcaPosicaoTabuleiro(tabuleiro, peca, x, y);
     printf("Jogada [%d,%d]!\n", x, y);
-    ImprimeTabuleiro(tabuleiro);
 
     return tabuleiro;
 }
@@ -45,61 +44,45 @@ tTabuleiro JogaJogador(tJogador jogador, tTabuleiro tabuleiro)
 int VenceuJogador(tJogador jogador, tTabuleiro tabuleiro)
 {
     int peca = jogador.id == ID_JOGADOR_1 ? PECA_1 : PECA_2;
-    
-    if (
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 0, peca) &&
+
+    if (EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 0, peca) &&
         EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 0, peca) &&
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 0, peca)
-    )
-        return 1;
-    
-    if (
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 1, peca) &&
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 1, peca) &&
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 1, peca)
-    )
-        return 1;
-        
-    if (
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 2, peca) &&
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 2, peca) &&
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 2, peca)
-    )
-        return 1;
-    
-    if (
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 0, peca) &&
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 1, peca) &&
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 2, peca)
-    )
-        return 1;
-    
-    if (
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 0, peca) &&
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 1, peca) &&
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 2, peca)
-    )
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 0, peca))
         return 1;
 
-    if (
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 0, peca) &&
+    if (EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 1, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 1, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 1, peca))
+        return 1;
+
+    if (EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 2, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 2, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 2, peca))
+        return 1;
+
+    if (EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 0, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 1, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 2, peca))
+        return 1;
+
+    if (EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 0, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 1, peca) &&
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 2, peca))
+        return 1;
+
+    if (EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 0, peca) &&
         EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 1, peca) &&
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 2, peca)
-    )
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 2, peca))
         return 1;
-    
-    if (
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 0, peca) &&
+
+    if (EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 0, peca) &&
         EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 1, peca) &&
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 2, peca)
-    )
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 2, peca))
         return 1;
-    
-    if (
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 2, peca) &&
+
+    if (EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 0, 2, peca) &&
         EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 1, 1, peca) &&
-        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 0, peca)
-    )
+        EstaMarcadaPosicaoPecaTabuleiro(tabuleiro, 2, 0, peca))
         return 1;
 
     return 0;

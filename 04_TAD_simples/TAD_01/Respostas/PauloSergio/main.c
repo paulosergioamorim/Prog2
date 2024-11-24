@@ -3,7 +3,11 @@
 int main(int argc, char const *argv[])
 {
     tJogo jogo = CriaJogo();
-    ComecaJogo(jogo);
     
+    do
+    {
+        ComecaJogo(jogo);
+    } while (ContinuaJogo());
+
     return 0;
 }

@@ -1,6 +1,6 @@
 jogo.c: In function ‘ContinuaJogo’:
-jogo.c:51:1: warning: control reaches end of non-void function [-Wreturn-type]
-   51 | }
+jogo.c:53:1: warning: control reaches end of non-void function [-Wreturn-type]
+   53 | }
       | ^
 jogo.c: In function ‘CriaJogo’:
 jogo.c:8:12: warning: ‘jogo’ is used uninitialized [-Wuninitialized]

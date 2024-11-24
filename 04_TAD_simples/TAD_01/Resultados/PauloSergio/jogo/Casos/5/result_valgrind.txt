@@ -1,0 +1,6 @@
+==13555== Memcheck, a memory error detector
+==13555== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==13555== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==13555== Command: Resultados/PauloSergio/jogo/prog Resultados/PauloSergio/jogo/Casos/5
+==13555== Parent PID: 13554
+==13555== 
