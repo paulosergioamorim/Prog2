@@ -41,8 +41,8 @@ int ContinuaJogo()
     char c = 0;
     printf("Jogar novamente? (s,n)\n");
 
-    while (c != 's' && c != 'n')
-        scanf("%c%*c", &c);
+    scanf("%*[^a-z]");
+    scanf("%c", &c);
 
     if (c == 's')
         return 1;

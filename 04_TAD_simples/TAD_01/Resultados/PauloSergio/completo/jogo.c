@@ -24,12 +24,10 @@ void ComecaJogo(tJogo jogo)
         if (VenceuJogador(i == ID_JOGADOR_1 ? jogo.jogador1 : jogo.jogador2, jogo.tabuleiro))
         {
             printf("JOGADOR %d Venceu!\n", i);
-            printf("Jogar novamente? (s,n)\n");
             return;
         }
     }
 
-    printf("Jogar novamente? (s,n)\n");
     printf("Sem vencedor!\n");
 }
 
@@ -41,9 +39,10 @@ int AcabouJogo(tJogo jogo)
 int ContinuaJogo()
 {
     char c = 0;
+    printf("Jogar novamente? (s,n)\n");
 
-    while (c != 's' && c != 'n')
-        scanf("%c%*c", &c);
+    scanf("%*[^a-z]");
+    scanf("%c", &c);
 
     if (c == 's')
         return 1;

@@ -64,8 +64,8 @@ Jogada [2,2]!
 	XX0
 	00X
 	X0X
-Jogar novamente? (s,n)
 Sem vencedor!
+Jogar novamente? (s,n)
 Jogador 1
 Digite uma posicao (x e y):
 Jogada [0,0]!
@@ -126,8 +126,8 @@ Jogada [1,2]!
 	X0X
 	X00
 	0XX
-Jogar novamente? (s,n)
 Sem vencedor!
+Jogar novamente? (s,n)
 Jogador 1
 Digite uma posicao (x e y):
 Jogada [0,0]!

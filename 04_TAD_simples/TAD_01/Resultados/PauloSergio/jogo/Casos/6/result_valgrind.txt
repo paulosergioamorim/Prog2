@@ -1,6 +1,15 @@
-==13681== Memcheck, a memory error detector
-==13681== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==13681== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==13681== Command: Resultados/PauloSergio/jogo/prog Resultados/PauloSergio/jogo/Casos/6
-==13681== Parent PID: 13680
-==13681== 
+==35243== Memcheck, a memory error detector
+==35243== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==35243== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==35243== Command: Resultados/PauloSergio/jogo/prog Resultados/PauloSergio/jogo/Casos/6
+==35243== Parent PID: 35242
+==35243== 
+==35243== 
+==35243== HEAP SUMMARY:
+==35243==     in use at exit: 0 bytes in 0 blocks
+==35243==   total heap usage: 2 allocs, 2 frees, 8,192 bytes allocated
+==35243== 
+==35243== All heap blocks were freed -- no leaks are possible
+==35243== 
+==35243== For lists of detected and suppressed errors, rerun with: -s
+==35243== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
