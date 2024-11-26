@@ -13,7 +13,9 @@ int main()
 
 void ImprimeInvertido(char *string)
 {
-    int len = strlen(string);
+    if (*string == '\0')
+        return;
 
-    printf("%s", string);
+    ImprimeInvertido(string + 1);
+    printf("%c", *string);
 }
