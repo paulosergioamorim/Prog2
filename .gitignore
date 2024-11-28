@@ -53,6 +53,7 @@ dkms.conf
 prog
 outprog
 mkdiff
-.vscode/**
+.vscode
 
-Resultados/**
+Resultados
+correcao.sh
