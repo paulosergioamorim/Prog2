@@ -23,27 +23,18 @@ int main(int argc, char const *argv[])
     imprimeDataExtenso(dia2, mes2, ano2);
 
     int comparacao = comparaData(dia1, mes1, ano1, dia2, mes2, ano2);
-    int diferenca = 0;
+    int diferenca = calculaDiferencaDias(dia2, mes2, ano2, dia1, mes1, ano1);
 
     if (comparacao == 1)
-    {
         printf("A segunda data eh mais antiga\n");
-        diferenca = calculaDiferencaDias(dia2, mes2, ano2, dia1, mes1, ano1);
-    }
 
     else if (comparacao == -1)
-    {
         printf("A primeira data eh mais antiga\n");
-        diferenca = calculaDiferencaDias(dia1, mes1, ano1, dia2, mes2, ano2);
-    }
 
     else
-    {
         printf("As datas sao iguais\n");
-        return 0;
-    }
 
-    printf("A diferenca em dias entre as datas eh: %d dias", diferenca);
+    printf("A diferenca em dias entre as datas eh: %02d dias", diferenca);
 
     return 0;
 }

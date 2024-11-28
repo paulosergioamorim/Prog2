@@ -1,5 +1,6 @@
 #include "data.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int verificaDataValida(int dia, int mes, int ano)
 {
@@ -8,9 +9,9 @@ int verificaDataValida(int dia, int mes, int ano)
 
     if (mes == 2)
         if (verificaBissexto(ano))
-            return 1 <= dia <= 29;
+            return 1 <= dia && dia <= 29;
         else
-            return 1 <= dia <= 28;
+            return 1 <= dia && dia <= 28;
 
     switch (mes)
     {
@@ -30,16 +31,16 @@ int verificaDataValida(int dia, int mes, int ano)
 void imprimeMesExtenso(int mes)
 {
     char *meses[12] = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio",
-                       "Junho", "Agosto", "Setembro", "Outubro", "Novembro",
-                       "Dezembro"};
+                       "Junho", "Julho", "Agosto", "Setembro", "Outubro",
+                       "Novembro", "Dezembro"};
     printf("%s", meses[mes - 1]);
 }
 
 void imprimeDataExtenso(int dia, int mes, int ano)
 {
-    printf("%d ", dia);
+    printf("%02d de ", dia);
     imprimeMesExtenso(mes);
-    printf(" de %d\n", ano);
+    printf(" de %04d\n", ano);
 }
 
 int verificaBissexto(int ano)
@@ -96,17 +97,9 @@ int comparaData(int dia1, int mes1, int ano1, int dia2, int mes2, int ano2)
 int calculaDiasAteMes(int mes, int ano)
 {
     int dias = 0;
-    int diaAtual = 1;
-    int mesAtual = 1;
 
-    for (dias; mesAtual < mes; dias++)
-    {
-        while (verificaDataValida(diaAtual, mesAtual, ano))
-            diaAtual++;
-
-        diaAtual = 1;
-        mesAtual++;
-    }
+    for (int mesAtual = 1; mesAtual < mes; mesAtual++)
+        dias += numeroDiasMes(mesAtual, ano);
 
     return dias;
 }
@@ -114,7 +107,22 @@ int calculaDiasAteMes(int mes, int ano)
 int calculaDiferencaDias(int dia1, int mes1, int ano1, int dia2, int mes2, int ano2)
 {
     int dias = 0;
-    int mesAtual = 1;
+    int comparacao = comparaData(dia1, mes1, ano1, dia2, mes2, ano2);
 
-    return 0;
+    if (comparacao == 0)
+        return 0;
+
+    if (ano2 > ano1)
+        for (ano1; ano1 < ano2; ano1++)
+            dias += calculaDiasAteMes(12, ano1) + numeroDiasMes(12, ano1);
+
+    else if (ano1 > ano2)
+        for (ano2; ano2 < ano1; ano2++)
+            dias += calculaDiasAteMes(12, ano2) + numeroDiasMes(12, ano2);
+
+    dias += abs(calculaDiasAteMes(mes2, ano2) - calculaDiasAteMes(mes1, ano1));
+    dias += abs(dia2 - dia1);
+
+
+    return dias;
 }
