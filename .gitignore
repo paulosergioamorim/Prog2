@@ -54,6 +54,8 @@ prog
 outprog
 mkdiff
 .vscode
-
 Resultados
 correcao.sh
+log.txt
+saida.json
+Resultado.csv
