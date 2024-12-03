@@ -14,7 +14,7 @@ tEleitor LeEleitor()
     int votoP = 0;
     int votoG = 0;
 
-    scanf("%d, %d, %d", &id, &votoP, &votoG);
+    scanf("%d %d %d", &id, &votoP, &votoG);
 
     return CriaEleitor(id, votoP, votoG);
 }
