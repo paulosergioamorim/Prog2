@@ -17,7 +17,7 @@ tEleicao InicializaEleicao()
     eleicao.votosNulosPresidente = 0;
     eleicao.votosNulosGovernador = 0;
 
-    scanf("%d%*c", &totalCandidatos);
+    scanf("%d", &totalCandidatos);
 
     for (int i = 0; i < totalCandidatos; i++)
     {
@@ -140,7 +140,7 @@ void ImprimeResultadoEleicao(tEleicao eleicao)
 
     printf("- PRESIDENTE ELEITO: ");
 
-    if (EhMesmoCandidato(eleicao.presidentes[0], eleicao.presidentes[1]))
+    if (ObtemVotos(eleicao.presidentes[0]) == ObtemVotos(eleicao.presidentes[1]))
         printf("EMPATE. SERA NECESSARIO UMA NOVA VOTACAO\n");
     else
     {
@@ -157,7 +157,7 @@ void ImprimeResultadoEleicao(tEleicao eleicao)
 
     printf("- GOVERNADOR ELEITO: ");
 
-    if (EhMesmoCandidato(eleicao.governadores[0], eleicao.governadores[1]))
+    if (ObtemVotos(eleicao.governadores[0]) == ObtemVotos(eleicao.governadores[1]))
         printf("EMPATE. SERA NECESSARIO UMA NOVA VOTACAO\n");
     else
     {

@@ -18,7 +18,8 @@ tCandidato LeCandidato()
     char cargo = 0;
     int id = 0;
 
-    scanf("%49[^,], %49[^,], %c, %d%*c", nome, partido, &cargo, &id);
+    scanf("%*c");
+    scanf("%49[^,], %49[^,], %c, %d", nome, partido, &cargo, &id);
 
     return CriaCandidato(nome, partido, cargo, id);
 }
@@ -30,7 +31,7 @@ int VerificaIdCandidato(tCandidato candidato, int id)
 
 int EhMesmoCandidato(tCandidato candidato1, tCandidato candidato2)
 {
-    return ObtemVotos(candidato1) == ObtemVotos(candidato2);
+    return candidato1.id == candidato2.id;
 }
 
 char ObtemCargo(tCandidato candidato)
