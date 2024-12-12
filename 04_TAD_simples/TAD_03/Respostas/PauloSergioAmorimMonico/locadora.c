@@ -4,6 +4,11 @@
 #include <stdlib.h>
 
 int compararFilmesLocadora(const void *pFilme1, const void *pFilme2);
+void imprimirFilmeCadastrado(tFilme filme);
+void imprimirFilmeAlugado(tFilme filme);
+void imprimirFilmeDevolvido(tFilme filme);
+void imprimirFilmeEmEstoque(tFilme filme);
+void imprimirFilmeForaDeEstoque(tFilme filme);
 
 /**
  * @brief Cria uma nova locadora.
@@ -56,18 +61,14 @@ tLocadora lerCadastroLocadora(tLocadora locadora)
 
     while (1)
     {
-        scanf("%c", &codigo);
+        scanf("%c%*c", &codigo);
 
         if (codigo == '#')
-        {
-            scanf("%*c");
             break;
-        }
 
-        scanf("%*c");
         tFilme filme = leFilme(codigo - '0');
-
         locadora = cadastrarFilmeLocadora(locadora, filme);
+        imprimirFilmeCadastrado(filme);
     }
 
     return locadora;
@@ -82,11 +83,14 @@ tLocadora lerCadastroLocadora(tLocadora locadora)
  */
 tLocadora alugarFilmesLocadora(tLocadora locadora, int *codigos, int quantidadeCodigos)
 {
+    int totalFilmesAlugados = 0;
+    int totalCustoAlugado = 0;
+
     for (int i = 0; i < quantidadeCodigos; i++)
     {
-        if (verificarFilmeCadastrado(locadora, codigos[i]))
+        if (!verificarFilmeCadastrado(locadora, codigos[i]))
         {
-            printf("Filme  %d  nao  cadastrado\n", codigos[i]);
+            printf("Filme %d nao  cadastrado.\n", codigos[i]);
             continue;
         }
 
@@ -98,14 +102,14 @@ tLocadora alugarFilmesLocadora(tLocadora locadora, int *codigos, int quantidadeC
             if (obterQtdAlugadaFilme(locadora.filme[j]) < obterQtdEstoqueFilme(locadora.filme[j]))
             {
                 locadora.filme[j] = alugarFilme(locadora.filme[j]);
+                totalCustoAlugado += obterValorFilme(locadora.filme[j]);
+                totalFilmesAlugados++;
                 continue;
             }
-
-            printf("Filme %d  - ", obterCodigoFilme(locadora.filme[j]));
-            imprimirNomeFilme(locadora.filme[j]);
-            printf(" nao  disponivel  no  estoque.  Volte  mais tarde.\n");
         }
     }
+
+    printf("Total de filmes alugados: %d com custo de R$%d\n", totalFilmesAlugados, totalCustoAlugado);
 
     return locadora;
 }
@@ -148,7 +152,11 @@ tLocadora devolverFilmesLocadora(tLocadora locadora, int *codigos, int quantidad
     for (int i = 0; i < quantidadeCodigos; i++)
         for (int j = 0; j < locadora.numFilmes; j++)
             if (ehMesmoCodigoFilme(locadora.filme[j], codigos[i]))
+            {
                 locadora.filme[j] = devolverFilme(locadora.filme[j]);
+                locadora.lucro += obterValorFilme(locadora.filme[j]);
+                imprimirFilmeDevolvido(locadora.filme[j]);
+            }
 
     return locadora;
 }
@@ -197,12 +205,12 @@ tLocadora ordenarFilmesLocadora(tLocadora locadora)
  */
 void consultarEstoqueLocadora(tLocadora locadora)
 {
+    printf("~ESTOQUE~\n");
+
     for (int i = 0; i < locadora.numFilmes; i++)
-    {
-        printf("%d - ", obterCodigoFilme(locadora.filme[i]));
-        imprimirNomeFilme(locadora.filme[i]);
-        printf(" Fitas em estoque: %d\n", obterQtdEstoqueFilme(locadora.filme[i]));
-    }
+        imprimirFilmeEmEstoque(locadora.filme[i]);
+
+    consultarLucroLocadora(locadora);
 }
 
 /**
@@ -211,7 +219,8 @@ void consultarEstoqueLocadora(tLocadora locadora)
  */
 void consultarLucroLocadora(tLocadora locadora)
 {
-    printf("Lucro total R$%d\n", locadora.lucro);
+    if (locadora.lucro)
+        printf("Lucro total R$%d\n", locadora.lucro);
 }
 
 int compararFilmesLocadora(const void *pFilme1, const void *pFilme2)
@@ -220,4 +229,32 @@ int compararFilmesLocadora(const void *pFilme1, const void *pFilme2)
     tFilme filme2 = *(tFilme *)pFilme2;
 
     return compararNomesFilmes(filme1, filme2);
+}
+
+void imprimirFilmeCadastrado(tFilme filme)
+{
+    printf("Filme cadastrado %d - ", obterCodigoFilme(filme));
+    imprimirNomeFilme(filme);
+    printf("\n");
+}
+
+void imprimirFilmeDevolvido(tFilme filme)
+{
+    printf("Filme %d - ", obterCodigoFilme(filme));
+    imprimirNomeFilme(filme);
+    printf(" Devolvido!\n");
+}
+
+void imprimirFilmeEmEstoque(tFilme filme)
+{
+    printf("%d - ", obterCodigoFilme(filme));
+    imprimirNomeFilme(filme);
+    printf(" Fitas em estoque: %d\n", obterQtdEstoqueFilme(filme));
+}
+
+void imprimirFilmeForaDeEstoque(tFilme filme)
+{
+    printf("Filme %d  - ", obterCodigoFilme(filme));
+    imprimirNomeFilme(filme);
+    printf(" nao  disponivel  no  estoque.  Volte  mais tarde.\n");
 }
