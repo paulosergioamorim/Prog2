@@ -11,16 +11,23 @@
  * @param id Identificador de cada produto.
  * @return Produto criado.
  */
-tProduct leProduto() {
-    char nome[50] = "";
+tProduct leProduto()
+{
+    char nome[MAX_NOME] = "";
     int id = 0;
     float preco = 0;
     float desconto = 0;
     int estoque = 0;
 
+    printf("Nome do Produto: ");
     scanf("%[^\n]%*c", nome);
+    printf("ID: ");
     scanf("%d%*c", &id);
+    printf("Preco: ");
     scanf("%f%*c", &preco);
+    printf("Desconto: ");
+    scanf("%f%*c", &desconto);
+    printf("Estoque: ");
     scanf("%d%*c", &estoque);
 
     return criaProduto(nome, desconto, preco, estoque, id);
@@ -35,13 +42,15 @@ tProduct leProduto() {
  * @param id Identificador de cada produto.
  * @return Produto criado.
  */
-tProduct criaProduto(char* nome, float desconto, float preco, int estoque, int id) {
+tProduct criaProduto(char *nome, float desconto, float preco, int estoque, int id)
+{
     tProduct produto;
     strcpy(produto.nome, nome);
     produto.desconto = desconto;
     produto.preco = preco;
     produto.estoque = estoque;
     produto.id = id;
+    produto.vendas = 0;
 
     return produto;
 }
@@ -50,8 +59,9 @@ tProduct criaProduto(char* nome, float desconto, float preco, int estoque, int i
  * @brief Retorna o desconto atual de um produto
  * @param produto O produto.
  * @return O desconto.
-*/
-float obtemDesconto(tProduct produto) {
+ */
+float obtemDesconto(tProduct produto)
+{
     return produto.desconto;
 }
 
@@ -59,8 +69,9 @@ float obtemDesconto(tProduct produto) {
  * @brief Retorna o preço de um produto
  * @param produto O produto.
  * @return O preço.
-*/
-float obtempreco(tProduct produto) {
+ */
+float obtempreco(tProduct produto)
+{
     return produto.preco;
 }
 
@@ -68,8 +79,9 @@ float obtempreco(tProduct produto) {
  * @brief Retorna o preço de um produto com o desconto aplicado.
  * @param produto O produto.
  * @return O preço com desconto.
-*/
-float obtemPrecoComDesconto(tProduct produto) {
+ */
+float obtemPrecoComDesconto(tProduct produto)
+{
     float preco = obtempreco(produto);
     float descontoBruto = preco * obtemDesconto(produto);
 
@@ -80,8 +92,9 @@ float obtemPrecoComDesconto(tProduct produto) {
  * @brief Retorna o estoque atual de um produto
  * @param produto O produto.
  * @return O estoque.
-*/
-int obtemEstoque(tProduct produto) {
+ */
+int obtemEstoque(tProduct produto)
+{
     return produto.estoque;
 }
 
@@ -89,8 +102,9 @@ int obtemEstoque(tProduct produto) {
  * @brief Retorna as vendas atual de um produto
  * @param produto O produto.
  * @return As vendas.
-*/
-int obtemVendas(tProduct produto) {
+ */
+int obtemVendas(tProduct produto)
+{
     return produto.vendas;
 }
 
@@ -98,8 +112,9 @@ int obtemVendas(tProduct produto) {
  * @brief Retorna o id de um produto
  * @param produto O produto.
  * @return O id.
-*/
-int obtemId(tProduct produto) {
+ */
+int obtemId(tProduct produto)
+{
     return produto.id;
 }
 
@@ -108,8 +123,15 @@ int obtemId(tProduct produto) {
  * @param produto O produto.
  * @param qtd A quantidade a ser adicionada ao estoque do produto.
  * @return Produto com o estoque atualizado.
-*/
-tProduct aumentaEstoqueProduto(tProduct produto, int qtd) {
+ */
+tProduct aumentaEstoqueProduto(tProduct produto, int qtd)
+{
+    if (qtd <= 0)
+    {
+        printf("Quantidade inválida.\n");
+        return produto;
+    }
+
     produto.estoque += qtd;
 
     return produto;
@@ -120,9 +142,21 @@ tProduct aumentaEstoqueProduto(tProduct produto, int qtd) {
  * @param produto O produto.
  * @param qtd A quantidade a ser retirada do estoque.
  * @return Produto com o estoque atualizado.
-*/
-tProduct vendeProduto(tProduct produto, int qtd) {
-    return aumentaEstoqueProduto(produto, -qtd);
+ */
+tProduct vendeProduto(tProduct produto, int qtd)
+{
+    int estoque = obtemEstoque(produto);
+
+    if (estoque < 0 || estoque < qtd)
+    {
+        printf("Quantidade inválida.\n");
+        return produto;
+    }
+
+    produto.estoque -= qtd;
+    produto.vendas += qtd;
+
+    return produto;
 }
 
 /**
@@ -130,10 +164,14 @@ tProduct vendeProduto(tProduct produto, int qtd) {
  * @param produto O produto.
  * @param desconto O novo desconto.
  * @return Produto com o desconto atualizado.
-*/
-tProduct atualizaDesconto(tProduct produto, float desconto) {
-    if (desconto < 0 || desconto > 1)
+ */
+tProduct atualizaDesconto(tProduct produto, float desconto)
+{
+    if (desconto < 0 || 1 < desconto)
+    {
+        printf("Quantidade inválida.\n");
         return produto;
+    }
 
     produto.desconto = desconto;
 
@@ -145,8 +183,9 @@ tProduct atualizaDesconto(tProduct produto, float desconto) {
  * @param produto O produto.
  * @param id O id.
  * @return retorna true se o id for o mesmo do produto
-*/
-bool ehMesmoId(tProduct produto, int id) {
+ */
+bool ehMesmoId(tProduct produto, int id)
+{
     return produto.id == id;
 }
 
@@ -155,7 +194,8 @@ bool ehMesmoId(tProduct produto, int id) {
  * Produto: <nome>, Preco atual: <preco>, Qtd no estoque: <estoque>, Qtd vendida: <vendas>
  * @brief Deve possuir quebra de linha ao final
  * @param produto O produto a ser impresso.
-*/
-void imprimeProduto(tProduct produto) {
-    printf("Produto: %s, Preco atual: %.2f, Qtd no estoque: %d, Qtd vendida: %d\n", produto.nome, produto.preco, produto.estoque, produto.vendas);
+ */
+void imprimeProduto(tProduct produto)
+{
+    printf("Produto: %s, Preco atual: %.2f, Qtd no estoque: %d, Qtd vendida: %d\n", produto.nome, obtemPrecoComDesconto(produto), produto.estoque, produto.vendas);
 }
