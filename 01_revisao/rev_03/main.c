@@ -1,41 +1,45 @@
 #include <stdio.h>
-#include <stdbool.h>
+#include <stdlib.h>
+
+int count_item(int n, int vec[n], int item);
 
 int main(int argc, char const *argv[])
 {
     int n = 0;
+    int hasFound = 0;
 
     fflush(stdin);
-    scanf("%d\n", &n);
+    scanf("%d ", &n);
 
     int idBooks[n];
 
     for (int i = 0; i < n; i++)
         scanf("%d", &idBooks[i]);
-
-    bool hasOneWithoutCopy = false;
+        
     for (int i = 0; i < n; i++)
     {
-        bool hasCopy = false;
-
-        for (int j = 0; j < n; j++)
-        {
-            if (i != j && idBooks[i] == idBooks[j])
-            {
-                hasCopy = true;
-                break;
-            }
-        }
-
-        if (hasCopy)
+        if (count_item(n, idBooks, idBooks[i]) != 1)
             continue;
 
         printf("%d ", idBooks[i]);
-        hasOneWithoutCopy = true;
+        hasFound = 1;
     }
 
-    if (!hasOneWithoutCopy)
-        printf("NENHUM");
+    if (hasFound)
+        return 0;
+
+    printf("NENHUM");
 
     return 0;
+}
+
+int count_item(int n, int vec[n], int item)
+{
+    int count = 0;
+
+    for (int i = 0; i < n; i++)
+        if (vec[i] == item)
+            count++;
+
+    return count;
 }
