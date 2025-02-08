@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
-int capacidadeTotalPrisao(tPrisao prisao);
+int capacidadeTotalPrisao(tPrisao *prisao);
 
 /**
  * @brief Construtor do tipo prisão
@@ -18,7 +18,7 @@ tPrisao criaPrisao(char *nome, int nCelas, int capacidadeCelas)
     strcpy(prisao.nome, nome);
     prisao.nCelas = nCelas;
     prisao.capacidadeCelas = capacidadeCelas;
-    prisao.dia = 1;
+    prisao.dia = 0;
 
     for (int i = 0; i < prisao.nCelas; i++)
         prisao.celas[i] = criaCela(prisao.capacidadeCelas);
@@ -35,35 +35,34 @@ void executaPrisao(tPrisao *prisao)
 
     while (1)
     {
-        /*
-        Menu:
- I - Inserir detento
- P - Passar o dia
- F - Registrar fuga de cela
- E - Encerrar programa
- */
-
         imprimeDiaEMenuPrisao(prisao);
-
         scanf("%c%*c", &option);
 
         switch (option)
         {
-        case 'E':
-            return finalizaPrograma(prisao);
+        case 'I':
+            inserePrisioneiroPrisao(prisao);
+            
+            if (obtemNumeroPrisioneirosPrisao(prisao) == prisao->nCelas * prisao->capacidadeCelas)
+            {
+                rebeliaoGeralPrisao(prisao);
+                return;
+            }
+
+            break;
+
         case 'P':
             passaDiaPrisao(prisao);
             break;
-        case 'I':
-            inserePrisioneiroPrisao(prisao);
 
-            if (obtemNumeroPrisioneirosPrisao(prisao) == capacidadeTotalPrisao(*prisao))
-                return rebeliaoGeralPrisao(prisao);
-
-            break;
         case 'F':
             registraFugaCelaPrisao(prisao);
             break;
+
+        case 'E':
+            finalizaPrograma(prisao);
+            return;
+
         default:
             break;
         }
@@ -75,12 +74,12 @@ void executaPrisao(tPrisao *prisao)
  */
 void imprimeDiaEMenuPrisao(tPrisao *prisao)
 {
-    printf("Dia %d na prisao de %s\n\n", prisao->dia, prisao->nome);
+    printf("Dia %d na prisao de %s\n", prisao->dia, prisao->nome);
     printf("Menu:\n");
-    printf("I - Inserir detento\n");
-    printf("P - Passar o dia\n");
-    printf("F - Registrar fuga de cela\n");
-    printf("E - Encerrar programa\n");
+    printf(" I - Inserir detento\n");
+    printf(" P - Passar o dia\n");
+    printf(" F - Registrar fuga de cela\n");
+    printf(" E - Encerrar programa\n");
 }
 
 /**
@@ -140,9 +139,11 @@ void registraFugaCelaPrisao(tPrisao *prisao)
  */
 void finalizaPrograma(tPrisao *prisao)
 {
-    if (obtemNumeroPrisioneirosPrisao(prisao) > 0)
-        return printf("Prisioneiros liberados para a finalizacao do programa!!!\n");
-    
+    if (obtemNumeroPrisioneirosPrisao(prisao) > 0) {
+        printf("Prisioneiros liberados para a finalizacao do programa!!!\n");
+        return;
+    }
+
     printf("Fim do programa.\n");
 }
 /**
@@ -150,9 +151,9 @@ void finalizaPrograma(tPrisao *prisao)
  */
 int obtemNumeroPrisioneirosPrisao(tPrisao *prisao)
 {
-    int total;
+    int total = 0;
 
-    for (int i = 0; i < prisao->celas; i++)
+    for (int i = 0; i < prisao->nCelas; i++)
         total += obtemNumeroPrisioneirosCela(&prisao->celas[i]);
 
     return total;
@@ -171,7 +172,7 @@ void rebeliaoGeralPrisao(tPrisao *prisao)
     printf("Fim do programa.\n");
 }
 
-int capacidadeTotalPrisao(tPrisao prisao)
+int capacidadeTotalPrisao(tPrisao *prisao)
 {
-    return prisao.nCelas * prisao.capacidadeCelas;
+    return prisao->nCelas * prisao->capacidadeCelas;
 }
